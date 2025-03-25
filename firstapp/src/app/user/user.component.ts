@@ -1,9 +1,4 @@
-import { Component } from '@angular/core';
-import { DUMMY_USERS } from '../dummy-users';
-import { log } from 'node:console';
-
-
-
+import { Component, Input } from '@angular/core';
 
 
 @Component({
@@ -13,14 +8,12 @@ import { log } from 'node:console';
   styleUrl: './user.component.css',
 })
 export class UserComponent {
-  selectedUser = DUMMY_USERS;
+  @Input({required :true }) avatar!: string;
+  @Input({required :true }) name!: string;
 
   get imagePath() {
-    return 'assets/users/' + this.selectedUser.avatar;
+    return 'assets/users/' + this.avatar;
   }
 
-  onSelectUser() {
-    const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
-    this.selectedUser = DUMMY_USERS[randomIndex];
-  }
+  onSelectUser() {}
 }
