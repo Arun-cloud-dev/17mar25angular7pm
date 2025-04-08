@@ -11,12 +11,19 @@
 
 
     <!-- @if( selectedUser ) { -->
-        <app-tasks *ngIf="selectedUser; else fallback"[name]="selectedUser!.name"></app-tasks>
+        <!-- <app-tasks *ngIf="selectedUser; else fallback"[name]="selectedUser!.name"></app-tasks> -->
     <!-- }@else { -->
-     <ng-template #fallback>
+     <!-- <ng-template #fallback>
         <h2 id="fallback">Select a user to see their tasks</h2>
      </ng-template>
-     
+      -->
         
     <!-- } -->
+
+
+    @if (selectedUser ) {
+       <app-tasks [userId]="selectedUser.id" [name]="selectedUser.name"/>
+    } @else {
+        <h2 id="fallback">Select a user to see their tasks</h2>
+    }
 </main>
