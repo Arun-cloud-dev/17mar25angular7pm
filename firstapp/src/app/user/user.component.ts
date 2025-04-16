@@ -1,15 +1,7 @@
-import { Component, Input, input,computed, Output, EventEmitter , output} from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
 import { type User } from './user.model';
-import { CardComponent } from "../shared/card/card.component";
-
-// interface User {
-//   id: string;
-//   avatar: string;
-//   name: string;
-// }
-
-
-
+import { CardComponent } from '../shared/card/card.component';
 
 @Component({
   selector: 'app-user',
@@ -17,36 +9,17 @@ import { CardComponent } from "../shared/card/card.component";
   templateUrl: './user.component.html',
   styleUrl: './user.component.css',
   imports: [CardComponent],
-  
-
 })
 export class UserComponent {
-  // @Input({ required: true }) avatar!: string;
-  // @Input({ required: true }) name!: string;
-  // @Input() id!: string;
-
-  // avatar = input<string>();
-  // name = input.required<string>();
-
   @Input({ required: true }) user!: User;
-  @Input({required:true}) selected!: boolean;
+  @Input({ required: true }) selected!: boolean;
+  @Output() select = new EventEmitter<string>();
 
-  @Output() select = new EventEmitter(); 
-
-  // select = output<string>();
-
-
-  imagePath = computed(() => {
+  get imagePath() {
     return 'assets/users/' + this.user.avatar;
-});
-
-  
-  // get imagePath() {
-  //   return 'assets/users/' + this.avatar;
-  // }
+  }
 
   onSelectUser() {
     this.select.emit(this.user.id);
-
   }
 }
